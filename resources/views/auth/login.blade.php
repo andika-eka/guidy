@@ -41,7 +41,13 @@
                                 <button type="submit" class="btn btn-primary btn-block mb-4">
                                         Log in
                                     </button>
-
+                                <p>
+                                
+                                    <a  class="">
+                                        sign up
+                                    </a>
+                                </p>
+                                    
                             </form>
                         </div>
                     </div>

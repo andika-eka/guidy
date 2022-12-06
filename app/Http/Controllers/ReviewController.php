@@ -17,11 +17,11 @@ class ReviewController extends Controller
     public function index($guide_id)
     {
 
-        $user = Auth::check();
+        $user = Auth::user();
         $reviews = Guide::find($guide_id);
         $reviews->review; 
-        dd($user);
-        return view('pages.comment', compact('reviews'));
+        // dd($user);
+        return view('pages.comment', compact('reviews', 'user'));
     }
 
     /**
@@ -43,10 +43,11 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
         $review = new Review;
         $review->guide_id = 1;
-        $review->name = $request->name;
-        $review->email = $request->email;
+        $review->name = $user->fname . ' ' . $user->lname;
+        $review->email = $user->email;
         $review->rating = $request-> rating;
         $review->content = $request->msg;
         $review->save();
@@ -62,8 +63,9 @@ class ReviewController extends Controller
     public function show($id)
     {
         //
+        $user = Auth::user();
         $review = Review::find($id);
-        return view('pages.detail', compact('review'));
+        return view('pages.detail', compact('review', "user"));
     }
 
     /**
@@ -75,8 +77,9 @@ class ReviewController extends Controller
     public function edit($id)
     {
         //
+        $user = Auth::user();
         $review = Review::find($id);
-        return view('pages.edit', compact('review'));
+        return view('pages.edit', compact('review',  "user"));
     }
 
     /**
@@ -89,6 +92,7 @@ class ReviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $user = Auth::user();
         $review = Review::find($id);
         $review->guide_id = 1;
         $review->name = $request->name;

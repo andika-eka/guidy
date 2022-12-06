@@ -47,7 +47,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
-        dd(Auth::attempt($credentials));
+        // dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/index')
                         ->withSuccess('You have Successfully loggedin');
